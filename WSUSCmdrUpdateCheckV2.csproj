@@ -6,9 +6,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugType>None</DebugType>
     <!-- Suppress MSB3305 -->
-    <NoWarn>$(NoWarn);3305</NoWarn>
+    <NoWarn>$(NoWarn);3305;1701;1702</NoWarn>
+    <!-- Suppress warnings for COM resolution -->
+    <ResolveComReference.SuppressWarnings>3305</ResolveComReference.SuppressWarnings>
     <!-- Application Icon -->
     <ApplicationIcon>Oxygen-Icons.org-Oxygen-Apps-system-software-update.ico</ApplicationIcon>
     <!-- Versioning Information -->
