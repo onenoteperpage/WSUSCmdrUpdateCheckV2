@@ -8,31 +8,28 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <PlatformTarget>x64</PlatformTarget>
     <DebugType>None</DebugType>
-    <!-- Suppress MSB3305 -->
-    <NoWarn>$(NoWarn);3305;1701;1702</NoWarn>
-    <!-- Suppress warnings for COM resolution -->
-    <ResolveComReference.SuppressWarnings>3305</ResolveComReference.SuppressWarnings>
+    
+    <!-- Suppress MSB3305 warnings for COM references -->
+    <NoWarn>$(NoWarn);3305</NoWarn>
+
     <!-- Application Icon -->
     <ApplicationIcon>Oxygen-Icons.org-Oxygen-Apps-system-software-update.ico</ApplicationIcon>
+
     <!-- Versioning Information -->
     <Version>1.0.0</Version>
-    <!-- Assembly Version -->
     <FileVersion>1.0.0.0</FileVersion>
-    <!-- File Version -->
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <!-- Assembly version -->
     <InformationalVersion>1.0.0-beta</InformationalVersion>
-    <!-- Optional human-readable version -->
 
-    <Authors>ReYatra.com</Authors>
     <!-- Author information -->
+    <Authors>ReYatra.com</Authors>
     <Company>ReYatra.com</Company>
-    <!-- Company Name -->
     <Product>WSUSCmdrUpdateCheckV2</Product>
-    <!-- Copyright Notice -->
     <Copyright>© 2024 ReYatra. All rights reserved.</Copyright>
-    <!-- Product Name -->
     <Description>A utility for checking and installing Windows updates.</Description>
+
+    <!-- Disable ResolveComReferences if needed -->
+    <!--<ResolveComReferences>false</ResolveComReferences>-->
   </PropertyGroup>
 
   <ItemGroup>
