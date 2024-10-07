@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
 
-namespace WindowsUpdateChecker.Services
+namespace WindowsUpdateChecker.Services;
+
+public interface IUpdateService
 {
-    public interface IUpdateService
-    {
-        Task<int> CheckForUpdatesAsync(string machineName);
-        Task DownloadAndInstallUpdatesAsync(string machineName, bool install, bool reboot, string message = "The system will shut down for updates in 3 minutes.");
-    }
+    Task<int> CheckForUpdatesAsync(string machineName);
+    Task DownloadAndInstallUpdatesAsync(string machineName, bool install, bool reboot, string message = "The system will shut down for updates in 3 minutes.");
 }

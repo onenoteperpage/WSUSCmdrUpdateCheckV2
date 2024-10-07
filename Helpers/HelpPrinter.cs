@@ -4,17 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WSUSCmdrUpdateCheckV2.Helpers
+namespace WSUSCmdrUpdateCheckV2.Helpers;
+
+public static class HelpPrinter
 {
-    public static class HelpPrinter
+    public static void PrintHelp()
     {
-        public static void PrintHelp()
-        {
-            Console.WriteLine("Usage: WSUSCmdrUpdateCheckV2 --machine=<machine IP or DNS> [--install=<true/false>] [--reboot=<true/false>]");
-            Console.WriteLine("    --machine: (required) The IP or DNS of the remote machine.");
-            Console.WriteLine("    --install: (optional) Whether to install updates. Defaults to false.");
-            Console.WriteLine("    --reboot: (optional) Whether to reboot after installing updates. Requires --install=true.");
-            Console.WriteLine("Example: WSUSCmdrUpdateCheckV2 --machine=192.168.1.100 --install=true --reboot=true");
-        }
+        Console.WriteLine("Usage: WSUSCmdrUpdateCheckV2 <action> [options]");
+        Console.WriteLine("Actions:");
+        Console.WriteLine("    count         Display the number of updates available.");
+        Console.WriteLine("    install       Install available updates.");
+        Console.WriteLine("");
+        Console.WriteLine("Options:");
+        Console.WriteLine("    --machine=<machine IP or DNS>   Specify the machine to check or install updates on. Defaults to the current machine.");
+        Console.WriteLine("    --restart                      Automatically restart the machine after installing updates (only with 'install').");
+        Console.WriteLine("");
+        Console.WriteLine("Examples:");
+        Console.WriteLine("    WSUSCmdrUpdateCheckV2 count");
+        Console.WriteLine("    WSUSCmdrUpdateCheckV2 count --machine=192.168.1.100");
+        Console.WriteLine("    WSUSCmdrUpdateCheckV2 install --machine=192.168.1.100 --restart");
     }
 }
+

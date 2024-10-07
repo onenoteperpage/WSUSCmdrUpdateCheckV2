@@ -1,43 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace WSUSCmdrUpdateCheckV2.Helpers;
 
-namespace WSUSCmdrUpdateCheckV2.Helpers
+public class ArgumentParser
 {
-    public class ArgumentParser
+    public string? Machine { get; set; }
+    public string Action { get; set; } = "count"; // Default action is "count"
+    public bool Install { get; set; } = false;
+    public bool Reboot { get; set; } = false;
+
+    public static ArgumentParser? ParseArguments(string[] args)
     {
-        public string Machine { get; set; } = null!;
-        public bool Install { get; set; } = false;
-        public bool Reboot { get; set; } = false;
+        var options = new ArgumentParser();
 
-        public static ArgumentParser? ParseArguments(string[] args)
+        foreach (var arg in args)
         {
-            var options = new ArgumentParser();
-
-            foreach (var arg in args)
+            if (arg.StartsWith("--machine=") || arg.StartsWith("--computer="))
             {
-                if (arg.StartsWith("--machine="))
-                {
-                    options.Machine = arg.Split('=')[1];
-                }
-                else if (arg.StartsWith("--install="))
-                {
-                    options.Install = bool.TryParse(arg.Split('=')[1], out bool installValue) && installValue;
-                }
-                else if (arg.StartsWith("--reboot="))
-                {
-                    options.Reboot = bool.TryParse(arg.Split('=')[1], out bool rebootValue) && rebootValue;
-                }
-                else
-                {
-                    Console.WriteLine($"Unknown argument: {arg}");
-                    return null;
-                }
+                options.Machine = arg.Split('=')[1];
             }
-
-            return options;
+            else if (arg == "install")
+            {
+                options.Action = "install";
+                options.Install = true; // If 'install' is provided, we assume installation
+            }
+            else if (arg == "count")
+            {
+                options.Action = "count";
+            }
+            else if (arg == "--restart" || arg == "--reboot")
+            {
+                options.Reboot = true;
+            }
+            else
+            {
+                Console.WriteLine($"Unknown argument: {arg}");
+                return null;
+            }
         }
+
+        return options;
     }
 }
