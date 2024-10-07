@@ -47,7 +47,7 @@ jobs:
 
     # Build the application using the matrix configuration (Debug or Release)
     - name: Build the solution
-      run: .\build.cmd $env:Solution_Name /p:Configuration=${{ matrix.configuration }}
+      run: msbuild $env:Solution_Name /p:Configuration=${{ matrix.configuration }}
 
     # Install Inno Setup via Chocolatey
     - name: Install Inno Setup
