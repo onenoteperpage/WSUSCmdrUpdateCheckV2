@@ -56,7 +56,7 @@ jobs:
     # Build the Inno Setup installer
     - name: Build Installer with Inno Setup
       run: |
-        "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" $env:InnoSetup_Script
+        & "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /cc $env:InnoSetup_Script
       env:
         Configuration: ${{ matrix.configuration }}
 
