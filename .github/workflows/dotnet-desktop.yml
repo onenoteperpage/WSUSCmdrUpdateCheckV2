@@ -51,7 +51,9 @@ jobs:
 
     # Install Inno Setup via Chocolatey
     - name: Install Inno Setup
-      run: choco install innosetup --no-progress
+      run: |
+        Invoke-WebRequest -Uri https://files.jrsoftware.org/is/6/innosetup-6.3.3.exe -OutFile innosetup-6.3.3.exe
+        Start-Process -FilePath .\innosetup-6.3.3.exe -ArgumentList "/VERYSILENT","DOWNLOADISCRYPT=1" -Wait
 
     # Build the Inno Setup installer
     - name: Build Installer with Inno Setup
