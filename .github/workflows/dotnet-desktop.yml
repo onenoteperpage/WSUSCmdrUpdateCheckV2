@@ -26,6 +26,14 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+    
+    # Download Inno Setup
+    - name: Download Inno Setup
+      run: Invoke-WebRequest -Uri https://files.jrsoftware.org/is/6/innosetup-6.3.3.exe -OutFile innosetup-6.3.3.exe
+    
+    # Install Inno Setup
+    - name: Install Inno Setup
+      run: Start-Process -FilePath .\innosetup-6.3.3.exe -ArgumentList "/VERYSILENT","DOWNLOADISCRYPT=1" -Wait
 
     # Install the .NET Core workload
     - name: Install .NET Core
@@ -48,12 +56,6 @@ jobs:
     # Build the application using the matrix configuration (Debug or Release)
     - name: Build the solution
       run: msbuild $env:Solution_Name /p:Configuration=${{ matrix.configuration }}
-
-    # Install Inno Setup via Chocolatey
-    - name: Install Inno Setup
-      run: |
-        Invoke-WebRequest -Uri https://files.jrsoftware.org/is/6/innosetup-6.3.3.exe -OutFile innosetup-6.3.3.exe
-        Start-Process -FilePath .\innosetup-6.3.3.exe -ArgumentList "/VERYSILENT","DOWNLOADISCRYPT=1" -Wait
 
     # Build the Inno Setup installer
     - name: Build Installer with Inno Setup
